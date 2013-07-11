@@ -17,7 +17,8 @@ logging.basicConfig(filename='MyPrcKill.log',
 
 
 ####### CONFIG
-conn = pymysql.connect(host='localhost', port=3306, user='', passwd='', db='', charset='utf8')
+user = 'root'
+conn = pymysql.connect(host='localhost', port=3306, user=user, passwd='', db='', charset='utf8')
 timeout = 60
 
 ######### PROGRAM ###########
@@ -27,7 +28,7 @@ cur.execute('SHOW FULL PROCESSLIST;')
 LL = []
 for r in cur:
     li=list(r)
-    if li[1]=='root' and li[5]>timeout: 
+    if li[1]==user and li[5]>timeout: 
 	LL.append(li)
 
 for l in LL:
